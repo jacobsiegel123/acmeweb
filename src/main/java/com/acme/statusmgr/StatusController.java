@@ -1,6 +1,8 @@
 package com.acme.statusmgr;
 
 import com.acme.statusmgr.beans.ServerStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +40,8 @@ public class StatusController {
     @RequestMapping("/status")
     public ServerStatus serverStatusHandler(@RequestParam(value = "name", defaultValue = "Anonymous") String name,
                                             @RequestParam(value = "details", required = false) List<String> details) {
+        Logger logger = LoggerFactory.getLogger("StuffImInterestedIn");
+        logger.info("details "+ details);
         return new ServerStatus(counter.incrementAndGet(),
                 String.format(template, name) + " the list is "+ details);
     }
