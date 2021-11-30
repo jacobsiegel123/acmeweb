@@ -23,7 +23,7 @@ Will respond with:
 You can customize the greeting with an optional `name` parameter in the query string:
 
 http://localhost:8080/server/status?name=Moishe
-
+http://localhost:8080/server/status?name=Moishedetails=1,2,3
 The `name` parameter value overrides the default value of “Anonymous” and is reflected in the response:
 
 `---- [source, json]
