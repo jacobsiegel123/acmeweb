@@ -42,7 +42,13 @@ public class StatusController {
                                             @RequestParam(value = "details", required = false) List<String> details) {
         Logger logger = LoggerFactory.getLogger("StuffImInterestedIn");
         logger.info("details "+ details);
-        return new ServerStatus(counter.incrementAndGet(),
-                String.format(template, name) + " the list is "+ details);
+        if(details == null){
+            return new ServerStatus(counter.incrementAndGet(),
+                    String.format(template, name));
+        }
+        else {
+            return new ServerStatus(counter.incrementAndGet(),
+                    String.format(template, name) + " the list is " + details);
+        }
     }
 }
