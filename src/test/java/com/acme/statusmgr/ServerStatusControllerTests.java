@@ -37,7 +37,7 @@ public class ServerStatusControllerTests {
             freeJVMMemory = ", and there are 127268272 bytes of JVM memory free",
             totalJVMMemory = ", and there is a total of 159383552 bytes of JVM memory",
             jreVersion = ", and the JRE version is 15.0.2+7-27",
-            tempLocation = ", and the server's temp file location is M:\\AppData\\Local\\Temp";
+            tempLocation = ", and the server's temp file location is C:\\Users\\siege\\AppData\\Local\\Temp";
 
     @Test
     public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
@@ -67,7 +67,7 @@ public class ServerStatusControllerTests {
         this.mockMvc.perform(get("http://localhost:8080/server/status/detailed?name=Yankel&details=availableProcessors,freeJVMMemory,totalJVMMemory,jreVersion,tempLocation"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.contentHeader").value("Server Status requested by Yankel"))
-                .andExpect(jsonPath("$.statusDesc").value("Server is up " +
+                .andExpect(jsonPath("$.statusDesc").value("Server is up" +
                         availableProcessors +
                         freeJVMMemory + totalJVMMemory + jreVersion + tempLocation));
     }
@@ -98,55 +98,40 @@ public class ServerStatusControllerTests {
 
     @Test
     public void totalJVMMemoryAndFreeJVMMemory() throws Exception {
-        this.mockMvc.perform(get("/server/status/detailed")
-                .param("details", totalJVMMemory)
-                .param("details", freeJVMMemory))
+        this.mockMvc.perform(get("/server/status/detailed?details=totalJVMMemory,freeJVMMemory"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.statusDesc").value("Server is" + totalJVMMemory + freeJVMMemory));
+                .andExpect(jsonPath("$.statusDesc").value("Server is up" + totalJVMMemory + freeJVMMemory));
     }
 
     @Test
     public void tempLocationJreVersionAndTotalJVMMemory() throws Exception {
-        this.mockMvc.perform(get("/server/status/detailed")
-                .param("details", tempLocation)
-                .param("details", jreVersion)
-                .param("details", totalJVMMemory))
+        this.mockMvc.perform(get("/server/status/detailed?details=tempLocation,jreVersion,totalJVMMemory"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.statusDesc").value("Server is up" + tempLocation + jreVersion + totalJVMMemory));
     }
 
     @Test
     public void nameLastAndAvailableProcessorsAndJreVersionBeforeIt() throws Exception {
-        this.mockMvc.perform(get("/server/status/detailed")
-                .param("details", availableProcessors)
-                .param("details", jreVersion)
-                .param("name", "Bob"))
+        this.mockMvc.perform(get("/server/status/detailed?details=availableProcessors,jreVersion&name=Yankel"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.contentHeader").value("Server Status requested by Bob"))
+                .andExpect(jsonPath("$.contentHeader").value("Server Status requested by Yankel"))
                 .andExpect(jsonPath("$.statusDesc").value("Server is up" + availableProcessors + jreVersion));
     }
 
     @Test
     public void nameLastAndTotalJVMMemoryAndFreeJVMMemoryAndTempLocationBeforeIt() throws Exception {
-        this.mockMvc.perform(get("/server/status/detailed")
-                .param("details", totalJVMMemory)
-                .param("details", freeJVMMemory)
-                .param("details", tempLocation)
-                .param("name", "Bob"))
+        this.mockMvc.perform(get("/server/status/detailed?details=totalJVMMemory,freeJVMMemory,tempLocation&name=Yankel"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.contentHeader").value("Server Status requested by Bob"))
+                .andExpect(jsonPath("$.contentHeader").value("Server Status requested by Yankel"))
                 .andExpect(jsonPath("$.statusDesc").value("Server is up" + totalJVMMemory + freeJVMMemory + tempLocation));
     }
 
 
     @Test
     public void nameFirstThenAndTotalJVMMemoryAndFreeJVMMemoryAndTempLocation() throws Exception {
-        this.mockMvc.perform(get("/server/status/detailed")
-                .param("details", totalJVMMemory)
-                .param("details", freeJVMMemory)
-                .param("details", tempLocation))
+        this.mockMvc.perform(get("/server/status/detailed?name=Yankel&details=totalJVMMemory,freeJVMMemory,tempLocation"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.contentHeader").value("Server Status requested by Bob"))
+                .andExpect(jsonPath("$.contentHeader").value("Server Status requested by Yankel"))
                 .andExpect(jsonPath("$.statusDesc").value("Server is up" + totalJVMMemory + freeJVMMemory + tempLocation));
     }
 }

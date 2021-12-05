@@ -38,7 +38,7 @@ public class ServerManager {
         return ", and the JRE version is 15.0.2+7-27";
     }
     static public String getTempLocation(){
-        return System.getenv("TEMP");
+        return ", and the server's temp file location is " + System.getenv("TEMP");
     }
 
 }

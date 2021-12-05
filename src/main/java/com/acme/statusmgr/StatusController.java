@@ -1,6 +1,6 @@
 package com.acme.statusmgr;
 
-import com.acme.statusmgr.beans.ServerStatus;
+import com.acme.statusmgr.beans.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,4 +45,36 @@ public class StatusController {
         return new ServerStatus(counter.incrementAndGet(),
                 String.format(template, name) + " the list is "+ details);
     }
+    @RequestMapping("/status/detailed")
+    public ServerStatusInterface getDetailedServerStatus(@RequestParam(value="name", defaultValue="Anonymous") String name,
+                                                         @RequestParam(value="details", required = false) List<String> details) {
+        System.out.println("***DEBUG INFO ***" + details);
+        ServerStatusInterface status = new ServerStatus(counter.incrementAndGet(),
+                String.format(template, name));
+        if(details != null) {
+            for (String s : details) {
+                //for each detail decorate the appropriate class
+                if (s.equals("availableProcessors")) {
+                    status = new AvailableProcessorDecorator(status);
+                }
+                else if (s.equals("freeJVMMemory")) {
+                    status = new FreeJVMMemoryDecorator(status);
+                }
+                else if (s.equals("totalJVMMemory")) {
+                    status = new TotalJVMMemoryDecorator(status);
+                }
+                else if (s.equals("jreVersion")) {
+                    status = new JreVersionDecorator(status);
+                }
+                else if (s.equals("tempLocation")) {
+                    status = new TempLocationDecorator(status);}
+
+               else{
+
+        }
+            }
+        }
+        return status;
+    }
+
 }

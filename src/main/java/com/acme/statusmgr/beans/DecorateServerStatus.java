@@ -1,6 +1,6 @@
 package com.acme.statusmgr.beans;
 
-public class DecorateServerStatus implements ServerStatusInterface{
+public abstract class DecorateServerStatus implements ServerStatusInterface{
     private ServerStatusInterface statusInter;
 
     public DecorateServerStatus(ServerStatusInterface decoratedStatus) {
