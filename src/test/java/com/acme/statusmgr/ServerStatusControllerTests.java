@@ -15,6 +15,11 @@
  */
 package com.acme.statusmgr;
 
+import com.acme.Details.DetailsGetter;
+import com.acme.Details.Facade;
+import com.acme.Details.MockFacade;
+import com.acme.statusmgr.beans.DecorateServerStatus;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -39,6 +44,12 @@ public class ServerStatusControllerTests {
             jreVersion = ", and the JRE version is 15.0.2+7-27",
             tempLocation = ", and the server's temp file location is C:\\Users\\siege\\AppData\\Local\\Temp";
 
+   @BeforeAll
+    private static void setUp(){
+       MockFacade mock = new MockFacade();
+        Facade facade = new Facade();
+        facade.setFacade(mock);
+    }
     @Test
     public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
 

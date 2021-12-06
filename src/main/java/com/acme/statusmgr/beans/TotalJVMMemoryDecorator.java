@@ -9,7 +9,7 @@ public class TotalJVMMemoryDecorator extends DecorateServerStatus {
 
     @Override
     public String getStatusDesc() {
-        return super.getStatusDesc() + ServerManager.getTotalJVMMemory();
+        return super.getStatusDesc() + facade.getTotalJVMMemory();
     }
 
     @Override

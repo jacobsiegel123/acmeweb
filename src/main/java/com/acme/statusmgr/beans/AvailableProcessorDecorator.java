@@ -9,7 +9,7 @@ public class AvailableProcessorDecorator extends DecorateServerStatus {
 
     @Override
     public String getStatusDesc() {
-        return super.getStatusDesc() + ServerManager.getAvailableProcessors();
+        return super.getStatusDesc() + facade.getAvailableProcessors();
     }
 
     @Override

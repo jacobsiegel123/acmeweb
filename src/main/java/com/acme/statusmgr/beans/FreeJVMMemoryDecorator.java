@@ -9,7 +9,7 @@ public class FreeJVMMemoryDecorator extends DecorateServerStatus {
 
     @Override
     public String getStatusDesc() {
-        return super.getStatusDesc() + ServerManager.getFreeJVMMemory();
+        return super.getStatusDesc() + facade.getFreeJVMMemory();
     }
 
     @Override

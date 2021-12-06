@@ -1,7 +1,11 @@
 package com.acme.statusmgr.beans;
 
+import com.acme.Details.DetailsGetter;
+import com.acme.Details.Facade;
+
 public abstract class DecorateServerStatus implements ServerStatusInterface{
     private ServerStatusInterface statusInter;
+    Facade facade = new Facade();
 
     public DecorateServerStatus(ServerStatusInterface decoratedStatus) {
         statusInter = decoratedStatus;

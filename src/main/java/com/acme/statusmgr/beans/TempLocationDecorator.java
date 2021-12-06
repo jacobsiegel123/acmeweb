@@ -9,7 +9,7 @@ public class TempLocationDecorator extends DecorateServerStatus {
 
     @Override
     public String getStatusDesc() {
-        return super.getStatusDesc() + ServerManager.getTempLocation();
+        return super.getStatusDesc() + facade.getTempLocation();
     }
 
     @Override

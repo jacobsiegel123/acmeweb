@@ -9,7 +9,7 @@ public class JreVersionDecorator extends DecorateServerStatus {
 
     @Override
     public String getStatusDesc() {
-        return super.getStatusDesc() + ServerManager.getJreVersion();
+        return super.getStatusDesc() + facade.getJreVersion();
     }
 
     @Override

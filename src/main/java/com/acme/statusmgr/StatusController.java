@@ -42,13 +42,21 @@ public class StatusController {
                                             @RequestParam(value = "details", required = false) List<String> details) {
         Logger logger = LoggerFactory.getLogger("StuffImInterestedIn");
         logger.info("details "+ details);
-        return new ServerStatus(counter.incrementAndGet(),
-                String.format(template, name) + " the list is "+ details);
+        if(details == null){
+            return new ServerStatus(counter.incrementAndGet(),
+                    String.format(template, name));
+        }
+        else{
+            return new ServerStatus(counter.incrementAndGet(),
+                    String.format(template, name) + " the list is "+ details);
+        }
+
     }
+
     @RequestMapping("/status/detailed")
     public ServerStatusInterface getDetailedServerStatus(@RequestParam(value="name", defaultValue="Anonymous") String name,
                                                          @RequestParam(value="details", required = false) List<String> details) {
-        System.out.println("***DEBUG INFO ***" + details);
+        //System.out.println("what details got passed in" + details);
         ServerStatusInterface status = new ServerStatus(counter.incrementAndGet(),
                 String.format(template, name));
         if(details != null) {
@@ -67,12 +75,17 @@ public class StatusController {
                     status = new JreVersionDecorator(status);
                 }
                 else if (s.equals("tempLocation")) {
-                    status = new TempLocationDecorator(status);}
+                    status = new TempLocationDecorator(status);
+                }
+                else {
+                    throw new DetailInvalidEx();
+                }
 
-               else{
-
-        }
             }
+
+            }
+        else {
+            throw new MissingListException();
         }
         return status;
     }
