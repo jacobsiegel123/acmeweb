@@ -1,5 +1,8 @@
 package com.acme.Details;
 
+/**
+ * accepts the details from the basefacade or mockfacade
+ */
 public class Facade implements DetailsGetter {
    static protected DetailsGetter facade = new BaseFacade();
 

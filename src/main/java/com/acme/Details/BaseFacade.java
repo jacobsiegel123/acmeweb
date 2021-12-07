@@ -1,6 +1,10 @@
 package com.acme.Details;
 
+/**
+ * class with methods to get the input for the descripiton
+ */
 public class BaseFacade implements DetailsGetter{
+
     public String getAvailableProcessors() {
         return ", and there are " + Runtime.getRuntime().availableProcessors() + " processors available";
     }

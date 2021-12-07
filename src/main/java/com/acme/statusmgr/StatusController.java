@@ -53,6 +53,12 @@ public class StatusController {
 
     }
 
+    /**
+     *
+     * @param name takes in the name
+     * @param details takes in the details to be added to the description
+     * @return we return a fully decorated object which has a decorated descripiton
+     */
     @RequestMapping("/status/detailed")
     public ServerStatusInterface getDetailedServerStatus(@RequestParam(value="name", defaultValue="Anonymous") String name,
                                                          @RequestParam(value="details", required = false) List<String> details) {

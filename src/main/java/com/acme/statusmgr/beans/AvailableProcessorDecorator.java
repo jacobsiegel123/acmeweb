@@ -2,6 +2,9 @@ package com.acme.statusmgr.beans;
 
 import com.acme.servermgr.ServerManager;
 
+/**
+ * decorator to add the AvailableProcessors to the description
+ */
 public class AvailableProcessorDecorator extends DecorateServerStatus {
     public AvailableProcessorDecorator(ServerStatusInterface decoratedStatus) {
         super(decoratedStatus);

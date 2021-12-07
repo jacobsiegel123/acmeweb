@@ -1,5 +1,8 @@
 package com.acme.Details;
 
+/**
+ * interface to get the methods of what to return for the description
+ */
 public interface DetailsGetter {
     public  String getAvailableProcessors();
 

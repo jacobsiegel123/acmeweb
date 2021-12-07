@@ -1,5 +1,8 @@
 package com.acme.Details;
 
+/**
+ * hard coded the details this is to be used for the test
+ */
 public class MockFacade implements DetailsGetter{
 
     public String getAvailableProcessors() {

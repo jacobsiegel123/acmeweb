@@ -1,7 +1,9 @@
 package com.acme.statusmgr.beans;
 
 import com.acme.servermgr.ServerManager;
-
+/**
+ * decorator to add the TotalJVMMemoryDecorator to the description
+ */
 public class TotalJVMMemoryDecorator extends DecorateServerStatus {
     public TotalJVMMemoryDecorator(ServerStatusInterface decoratedStatus) {
         super(decoratedStatus);

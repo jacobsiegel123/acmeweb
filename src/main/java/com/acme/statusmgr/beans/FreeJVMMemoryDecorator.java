@@ -1,7 +1,9 @@
 package com.acme.statusmgr.beans;
 
 import com.acme.servermgr.ServerManager;
-
+ /**
+ * decorator to add the FreeJVMMemoryDecorator to the description
+ * */
 public class FreeJVMMemoryDecorator extends DecorateServerStatus {
     public FreeJVMMemoryDecorator(ServerStatusInterface decoratedStatus) {
         super(decoratedStatus);

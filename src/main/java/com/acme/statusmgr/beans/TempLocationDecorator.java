@@ -1,7 +1,9 @@
 package com.acme.statusmgr.beans;
 
 import com.acme.servermgr.ServerManager;
-
+/**
+ * decorator to add the TempLocationDecorator to the description
+ */
 public class TempLocationDecorator extends DecorateServerStatus {
     public TempLocationDecorator(ServerStatusInterface decoratedStatus) {
         super(decoratedStatus);

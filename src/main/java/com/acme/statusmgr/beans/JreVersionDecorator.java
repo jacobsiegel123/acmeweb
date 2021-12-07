@@ -1,7 +1,9 @@
 package com.acme.statusmgr.beans;
 
 import com.acme.servermgr.ServerManager;
-
+/**
+ * decorator to add the JreVersionDecorator to the description
+ */
 public class JreVersionDecorator extends DecorateServerStatus {
     public JreVersionDecorator(ServerStatusInterface decoratedStatus) {
         super(decoratedStatus);
