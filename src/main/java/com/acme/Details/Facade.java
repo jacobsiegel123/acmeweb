@@ -1,11 +1,11 @@
 package com.acme.Details;
 
 public class Facade implements DetailsGetter {
-    protected DetailsGetter facade = new BaseFacade();
+   static protected DetailsGetter facade = new BaseFacade();
 
 
     public void setFacade(DetailsGetter facade) {
-        this.facade = facade;
+        Facade.facade = facade;
     }
     public String getAvailableProcessors() {
         return facade.getAvailableProcessors();

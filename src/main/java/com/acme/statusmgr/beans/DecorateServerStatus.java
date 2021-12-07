@@ -1,6 +1,5 @@
 package com.acme.statusmgr.beans;
 
-import com.acme.Details.DetailsGetter;
 import com.acme.Details.Facade;
 
 public abstract class DecorateServerStatus implements ServerStatusInterface{

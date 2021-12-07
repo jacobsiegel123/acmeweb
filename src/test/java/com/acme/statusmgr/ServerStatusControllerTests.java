@@ -15,10 +15,8 @@
  */
 package com.acme.statusmgr;
 
-import com.acme.Details.DetailsGetter;
 import com.acme.Details.Facade;
 import com.acme.Details.MockFacade;
-import com.acme.statusmgr.beans.DecorateServerStatus;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
